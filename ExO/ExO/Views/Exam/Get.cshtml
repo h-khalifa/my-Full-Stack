@@ -1,0 +1,26 @@
+﻿@model ExO.Models.StudentExamStatusViewModel
+
+
+<div style="margin:10%;">
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">@Model.ExamName</h3>
+        </div>
+        <div class="panel-body">
+            <p>
+                you have @(Model.ExamSize - Model.SolvedQuestions) to solve.<br />
+                Begin Your Exam.....<br />
+
+            </p>
+            @if (Model.SolvedQuestions == 0)
+            {
+                <a class="btn btn-primary" href="/exam/@Model.ExamCode/Question">Start <span class="glyphicon glyphicon-play"></span></a>
+            }
+            else
+            {
+                <a class="btn btn-primary" href="/exam/@Model.ExamCode/Question">Continue <span class="glyphicon glyphicon-step-forward"></span></a>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+﻿@model AskFm.Models.answerViewModel
+
+<div class="profile-bottom">
+    <div>
+        <form method="post" action="" class="form-horizontal" enctype="multipart/form-data" >
+            @Html.AntiForgeryToken()
+            <fieldset>
+                <legend>New Answer</legend>
+                @Html.HiddenFor(m => m.AskedBy_Id, Model.AskedBy_Id)
+                @Html.HiddenFor(m => m.IsAnon, Model.IsAnon)
+                @Html.HiddenFor(m => m.QuestionId, Model.QuestionId)
+                @Html.HiddenFor(m => m.Q, Model.Q)
+
+                <p>@Model.Q</p>
+
+                @Html.TextAreaFor(m => m.A, new { @class = "form-control", @rows = "3", @cols = "120", @placeholder = "your answer....." })
+
+                <label>attach image to your answer</label>
+                @*<input type="file" name="img" id="img" accept="image/*" />*@
+               
+                @Html.LabelFor(m => m.img)
+                @Html.TextBoxFor(m => m.img, new { type = "file", accept = "image/*" })
+                <br />
+                <input type="submit" class="btn btn-default" value="answer" />
+
+            </fieldset>
+        </form>
+    </div>  
+</div>

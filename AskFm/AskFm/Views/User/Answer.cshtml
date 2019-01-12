@@ -1,0 +1,97 @@
+﻿@model AskFm.Models.AnswerDTO
+
+<div class="profile-bottom">
+    <div class="answer" data-answerId="@Model.Id" data-profileId="@Model.AnsweredBy.Id">
+        @if (Model.IsAnon)
+        {
+            <span>Anonymous</span>
+        }
+        else
+        {
+            <img src="@Url.Action("GetProfilePhoto", "User" , new { Id=Model.AskedBy.Id })" width="30px" height="30px" style="display:inline-block" />
+            <a class="btn btn-link text-capitalize" href="/user/profile/@Model.AskedBy.UserName">@Model.AskedBy.FullName</a>
+        }
+        <p style="font-size:large;">
+            <b>
+                @Model.Q
+            </b>
+        </p>
+        <br />
+        <img src="@Url.Action("GetProfilePhoto", "User" , new { Id=Model.AnsweredBy.Id })" width="30px" height="30px" style="display:inline-block" />
+        <a class="btn btn-link text-capitalize" href="/user/profile/@Model.AnsweredBy.UserName">@Model.AnsweredBy.FullName</a>
+        <span style="float:right;">@(Model.Date)</span>
+        <p>
+            @Model.A
+        </p>
+        @if (Model.ContainsPhoto)
+        {
+            <img src="@Url.Action("GetAnswerPhoto", "User" , new { Id=Model.Id })" style="display:block;width:100%;" />
+        }
+        <hr />
+        @if (User.Identity.IsAuthenticated && Model.DoClientLike)
+        {
+            <span style="display:inline-block;margin:10px;font-size:x-large" class="likes">@Model.Likes</span><span class="glyphicon glyphicon-heart text-danger like" style="font-size:x-large"></span>
+        }
+        else
+        {
+            <span style="display:inline-block;margin:10px;font-size:x-large" class="likes">@Model.Likes</span><span class="glyphicon glyphicon-heart like" style="font-size:x-large"></span>
+        }
+
+
+        @foreach (AskFm.Models.MiniUser liker in Model.Likers)
+        {
+            <br />
+            <img src="@Url.Action("GetProfilePhoto", "User" , new { Id=liker.Id })" width="20px" height="20px" style="display:inline-block" />
+            <a href="/User/Profile/@liker.UserName" class="btn btn-link text-capitalize">@liker.FullName</a>
+        }
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+@if (User.Identity.IsAuthenticated)
+{
+    <script>
+        $(function () {
+            $('.answer').on('click', '.like', function () {
+                var bool = $(this).hasClass('text-danger');
+                var parent = $(this).parent();
+                var AnswerId = parent.attr("data-answerId");
+                var AnsweredBy_Id = parent.attr('data-profileId');
+                var likes = parseInt(parent.find('.likes').text());
+                var heart = $(this);
+                console.log("the answer: " + AnswerId + " answered by: " + AnsweredBy_Id);
+                if (bool) { ///dislike
+                    console.log('you disliked the answer');
+                    $.ajax({
+                        async: false,
+                        type: 'DELETE',
+                        url: '/api/likes/?AnswerId=' + AnswerId,
+                        contentType: 'application/json',
+                        success: function () {
+                            parent.find('.likes').text((likes - 1));
+                            heart.toggleClass('text-danger');
+                        },
+                    });
+                }
+                else { //////like
+                    console.log('you liked the answer');
+                    var model = {
+                        AnswerId: AnswerId,
+                        AnsweredBy_Id: AnsweredBy_Id
+                    };
+
+                    $.ajax({
+                        async: false,
+                        type: 'POST',
+                        url: '/api/Likes/',
+                        contentType: 'application/json',
+                        data: JSON.stringify(model),
+                        success: function () {
+                            parent.find('.likes').text(likes + 1);
+                            heart.toggleClass('text-danger');
+                        },
+                    });
+                }
+            });
+        });
+    </script>
+}

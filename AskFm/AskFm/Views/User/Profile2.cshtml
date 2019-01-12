@@ -1,0 +1,196 @@
+﻿@model AskFm.Models.UserDTO
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+
+@*for authenticated client requesting another profile  ----> enable Following & liking answers*@
+
+
+<div class="profile-top">
+
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <img class="img-circle" src="@Url.Action("GetProfilePhoto", "User" , new { Id=Model.Id })" width="200px" height="200px" style="display:block;margin-left:auto;margin-right:auto;" />
+        </div>
+        <div class="col-md-6 col-sm-12 ">
+            <h2 class="text-center text-capitalize">@Model.FullName</h2>
+            <p class="text-center">@Model.bio</p>
+            <button class="btn btn-success btn-lg" style="float:right;" id="follow">
+                Follow
+                @if (Model.Gender == AskFm.Models.Gender.Male)
+                {<span>him</span>}
+                else
+                { <span>her</span>}
+            </button>
+            <button class="btn btn-warning btn-lg" style="float:right;" id="unfollow">
+                UnFollow
+                @if (Model.Gender == AskFm.Models.Gender.Male)
+                {<span>him</span>}
+                else
+                { <span>her</span>}
+            </button>
+
+            <span style=" display:inline-block; background-color:#b15315;margin:5px;padding:5px 15px; border-radius:5px;" class="text-center">
+                Followers <br /> @Model.Followers
+            </span>
+            <span style=" display:inline-block; background-color:#b15315;margin:5px;padding:5px 15px;border-radius:5px;" class="text-center">
+                <span>Following <br /> @Model.Following</span>
+            </span>
+            <div class="clearfix"></div>
+        </div>
+
+
+    </div>
+</div>
+<div class="clearfix"></div>
+<hr />
+@*<div class="profile-bottom" >*@
+<div class="col-md-offset-3 col-md-6">
+    <div data-askedto-id=@Model.Id>
+        <textarea cols="70" id="askText" rows="3" placeholder="What, Why, How......ask" style="width:650px;height:80px;resize:both"></textarea>
+        <input type="checkbox" id="askAnon" />
+        <label>Anonymous?</label>
+        <button class="btn btn-default" id="askButton">Ask</button>
+    </div>
+    <hr />
+    @foreach (var a in Model.Answers)
+    {
+        <div class="panel panel-default answer" data-answerId="@a.Id" data-profileId="@Model.Id">
+            @if (a.IsAnon)
+            {
+                <p style="padding: 8px 12px;">Anonymous</p>
+            }
+            else
+            {
+                <a class="btn btn-link" href="/user/profile/@a.AskedBy.UserName">@a.AskedBy.FullName</a>
+            }
+            <div class="panel-heading" style="font-size:large;"><b>@a.Q</b></div>
+            <a class="btn-link" href="/user/answer/?Id=@a.Id" style="float:right; ">@a.Date</a>
+            <div class="panel-body">
+                @a.A
+            </div>
+            @if (a.ContainsPhoto)
+            {
+                <img src="@Url.Action("GetAnswerPhoto", "User" , new { Id=a.Id })" style="display:block;width:100%;" />
+            }
+            @if (a.DoClientLike)
+            {
+                <span style="display:inline-block;margin:10px;font-size:x-large"class="likes">@a.Likes</span> <span class="glyphicon glyphicon-heart text-danger like" style="font-size:x-large"></span>
+            }
+            else
+            {
+                <span style="display:inline-block;margin:10px;font-size:x-large"class="likes">@a.Likes</span> <span class="glyphicon glyphicon-heart like" style="font-size:x-large"></span>
+            }
+        </div>
+    }
+</div>
+<div class="clearfix"></div>
+<script>
+    $(function () {
+        var IsClientFollower = "@Model.IsClientFollower";
+        if (IsClientFollower == "True")
+        {
+            $('#unfollow').show();
+            $('#follow').hide();
+            console.log("you are follower");
+        }
+        else
+        {
+            $('#follow').show();
+            $('#unfollow').hide();
+            console.log("you are not follower");
+        }
+        $('#unfollow').click(function () {
+            $.ajax({
+                type: 'DELETE',
+                url: '/api/Follows/?followed_Id='+"@Model.Id",
+                contentType: "application/json",
+                success: function () {
+                    $('#unfollow').toggle();
+                    $('#follow').toggle();
+                },
+                error: function () {
+                    console.log("unfollow error");
+                }
+            });
+        });
+        $('#follow').click(function () {
+            $.ajax({
+                 type: 'POST',
+                url: '/api/Follows/?followed_Id='+"@Model.Id",
+                contentType: "application/json",
+                success: function () {
+                    $('#unfollow').toggle();
+                    $('#follow').toggle();
+                },
+                error: function () {
+                    console.log("unfollow error");
+                }
+            });
+        });
+        $("#askButton").click(function () {
+            var model = {
+                question: document.querySelector('#askText').value,
+                IsAnon: document.querySelector('#askAnon').checked,
+                AskedTo_Id: $(this).parent().attr("data-askedto-id"),
+            };
+
+            $.ajax({
+                type: 'POST',
+                dataType:'json',
+                contentType: 'application/json; charset=utf-8',
+                url: '/api/Questions',
+                data: JSON.stringify(model),
+                success: function (d) {
+                    document.querySelector('#askText').value = "";
+                    console.log(d);
+                },
+                error: function (err) {
+                    console.log('wrong' + err);
+                }
+                });
+
+        });
+
+        $('.answer').on('click', '.like', function () {
+            var bool = $(this).hasClass('text-danger');
+            var parent = $(this).parent();
+            var AnswerId = parent.attr("data-answerId");
+            var AnsweredBy_Id = parent.attr('data-profileId');
+            var likes = parseInt(parent.find('.likes').text());
+            var heart = $(this);
+            console.log("the answer: " + AnswerId + " answered by: " + AnsweredBy_Id);
+            if (bool) { ///dislike
+                console.log('you disliked the answer');
+                $.ajax({
+                    async: false,
+                    type: 'DELETE',
+                    url: '/api/likes/?AnswerId=' + AnswerId,
+                    contentType: 'application/json',
+                    success: function () {
+                        parent.find('.likes').text((likes - 1));
+                        heart.toggleClass('text-danger');
+                    },
+                });
+            }
+            else { //////like
+                console.log('you liked the answer');
+                var model = {
+                    AnswerId: AnswerId,
+                    AnsweredBy_Id: AnsweredBy_Id
+                };
+
+                $.ajax({
+                    async: false,
+                    type: 'POST',
+                    url: '/api/Likes/',
+                    contentType: 'application/json',
+                    data: JSON.stringify(model),
+                    success: function () {
+                        parent.find('.likes').text(likes + 1);
+                        heart.toggleClass('text-danger');
+                    },
+                });
+            }
+        });
+    });
+
+</script>

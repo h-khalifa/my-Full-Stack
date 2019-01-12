@@ -1,0 +1,19 @@
+﻿@model IEnumerable<AskFm.Models.Notification>
+
+<h2>You have @Model.Count() Notifications</h2>
+<div class="profile-bottom">
+    @foreach (AskFm.Models.Notification notification in Model)
+    {
+        <hr />
+        if (notification.UrlType == AskFm.Models.NotUrlType.ToAnswer)
+        {
+            <p>@notification.message</p>
+            <a class="btn btn-link" href="/user/answer/@notification.AnswerId" >Check!</a>
+        }
+        else if (notification.UrlType == AskFm.Models.NotUrlType.ToProfile)
+        {
+            <p>@notification.message</p>
+            <a class="btn btn-link" href="/user/profile/?Id=@notification.TriggerUserName">Check!</a>
+        }
+    }
+</div>

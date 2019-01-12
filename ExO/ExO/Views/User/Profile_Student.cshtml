@@ -1,0 +1,40 @@
+﻿@model ExO.Models.StudentProfileViewModel
+
+@{
+    ViewBag.Title = Model.UserName;
+}
+<div style="margin-top:3%;">
+    <h2 class="text-center">@Model.UserName</h2>
+</div>
+<div style="margin:5%;">
+    <table class="table table-hover table-responsive text-center">
+        <thead>
+            <tr>
+                <td>Exam</td>
+                <td>Code</td>
+                <td>Score</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model.Status){ 
+                <tr>
+                    <td>@item.ExamName</td>
+                    <td>@item.ExamCode</td>
+                    @if(item.IsComplete)
+                    {
+                    <td>
+                        @item.score / @item.ExamSize
+                    </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <a class="btn btn-danger" href="/exam/@item.ExamCode/Get">Continue</a>
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

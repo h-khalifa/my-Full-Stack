@@ -1,0 +1,59 @@
+﻿@model ExO.Models.TeacherProfileVeiwModel
+
+@{
+    ViewBag.Title = Model.UserName;
+}
+<div style="margin-top:3%;">
+    <h2 class="text-center">@Model.UserName</h2>
+</div>
+<div style="margin:5%;">
+    <table class="table table-hover table-responsive text-center">
+        <thead>
+            <tr>
+                <td>Exam</td>
+                <td>Code</td>
+                <td>Solved by</td>
+                <td>Average Score</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Exams)
+            {
+            <tr>
+                <td>@item.ExamName</td>
+                <td>@item.ExamCode</td>
+                @if (item.IsPosted)
+                {
+                    <td>@item.NumberOfStudents Students</td>
+                    <td>@item.AverageScore / @item.ExamSize</td>
+                    <td>
+                        <a class="btn btn-success" href="/Exam/@item.ExamCode/Grades">Download Grades</a>
+                        @*<button class="btn btn-success" id="x" >Download Grades</button>*@
+                    </td>
+                }
+                else
+                {
+                    <td>--</td>
+                    <td>--</td>
+                    <td>
+                        <a class="btn btn-danger" href="/Exam/@item.ExamCode/Finish">Post It</a>
+                    </td>
+                }
+
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@*<script>
+
+    document.getElementById('x').onclick = function () {
+        var xhr = new XMLHttpRequest();
+        xhr.open("get", "/Exam/En3rd/Grades", true);
+        xhr.send();
+        retu
+    }
+
+</script>*@

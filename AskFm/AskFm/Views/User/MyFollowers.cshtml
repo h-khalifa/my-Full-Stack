@@ -1,0 +1,10 @@
+﻿@model IEnumerable<AskFm.Models.MiniUser>
+
+<h2> You have @Model.Count() followers </h2>
+
+@foreach (AskFm.Models.MiniUser follower in Model)
+{
+    <hr />
+    <img src="@Url.Action("GetProfilePhoto", "User" , new { Id=follower.Id })" width="30px" height="30px" style="display:inline-block" />
+    <a class="btn btn-link text-capitalize" href="/user/profile/@follower.UserName">@follower.FullName</a>
+}

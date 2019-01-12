@@ -1,0 +1,32 @@
+﻿@model ExO.Models.QuestionViewModel
+
+
+
+<div class="Question">
+    <form method="post" action="" class="form-horizontal"  >
+        <fieldset>
+            <legend>
+                <b>
+                    @Model.question
+                </b>
+            </legend>
+
+            @*@Html.RadioButtonFor(model => model.AnswerA, "A")*@
+            <input type="radio" name="answer" value="A" />
+            <label>@Model.AnswerA</label>
+            <br />
+            <input type="radio" name="answer" value="B" />
+            <label>@Model.AnswerB</label>
+            <br />
+            <input type="radio" name="answer" value="C" />
+            <label>@Model.AnswerC</label>
+            <br />
+            <input type="radio" name="answer" value="D" />
+            <label>@Model.AnswerD</label>
+            <br />
+
+            <input type="submit" value="Submit" class="btn btn-primary" />
+
+        </fieldset>
+    </form>
+</div>

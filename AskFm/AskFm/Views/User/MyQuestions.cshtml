@@ -1,0 +1,37 @@
+﻿@model List<AskFm.Models.Question>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+
+<h2 id="heading" > You have @Model.Count Unanswerd questions</h2>
+
+<div class="profile-bottom">
+    @foreach (AskFm.Models.Question q in Model)
+    {
+        <div style="padding:5%;">
+            <h3>@q.question</h3>
+            <a class="btn btn-link ignore " data-QID=@q.Id>Ignore</a>
+            <span>Or</span>
+            <a class="btn btn-link" href="/User/MyAnswer/?Id=@q.Id">Answer</a>
+        </div>
+    }
+</div>
+
+<script>
+    $(function () {
+        $('.ignore').click(function () {
+            var id = $(this).attr('data-QID');
+            var div = $(this).parent();
+            //console.log("make delete request to -/api/Questions/" + id + "delete it from ui");
+            $.ajax({
+                type: 'DELETE',
+                url: '/api/Questions?Id=' + id,
+                contentType: "application/json",
+                success: function () {
+                    div.remove();
+                }
+            });           
+            return false;
+        });
+    });
+</script>
+
+
