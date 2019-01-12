@@ -10,3 +10,6 @@ when students leave the exam for any reason: they can come back and resume solvi
 techers at any time can download excel sheet containing the names of students completed the exam and thier grades.
 
 this project was created using empty web application project but configured to mcv, entity framework and identity were installed to them.
+
+to be added in the future:
+-add duration property to the exams so that, the exam is set to be completed automatically by the server in real-time approach after the student take the whole time even if he/she didn't solve all questions. 
