@@ -1,0 +1,66 @@
+E:\advanced\People CRUD\People CRUD\bin\People CRUD.dll.config
+E:\advanced\People CRUD\People CRUD\bin\People CRUD.dll
+E:\advanced\People CRUD\People CRUD\bin\People CRUD.pdb
+E:\advanced\People CRUD\People CRUD\bin\roslyn\csc.exe
+E:\advanced\People CRUD\People CRUD\bin\roslyn\csc.exe.config
+E:\advanced\People CRUD\People CRUD\bin\roslyn\csc.rsp
+E:\advanced\People CRUD\People CRUD\bin\roslyn\csi.exe
+E:\advanced\People CRUD\People CRUD\bin\roslyn\csi.exe.config
+E:\advanced\People CRUD\People CRUD\bin\roslyn\csi.rsp
+E:\advanced\People CRUD\People CRUD\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\advanced\People CRUD\People CRUD\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\advanced\People CRUD\People CRUD\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+E:\advanced\People CRUD\People CRUD\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\advanced\People CRUD\People CRUD\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+E:\advanced\People CRUD\People CRUD\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\advanced\People CRUD\People CRUD\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\advanced\People CRUD\People CRUD\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+E:\advanced\People CRUD\People CRUD\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+E:\advanced\People CRUD\People CRUD\bin\roslyn\Microsoft.Managed.Core.targets
+E:\advanced\People CRUD\People CRUD\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\advanced\People CRUD\People CRUD\bin\roslyn\System.AppContext.dll
+E:\advanced\People CRUD\People CRUD\bin\roslyn\System.Collections.Immutable.dll
+E:\advanced\People CRUD\People CRUD\bin\roslyn\System.Console.dll
+E:\advanced\People CRUD\People CRUD\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+E:\advanced\People CRUD\People CRUD\bin\roslyn\System.Diagnostics.StackTrace.dll
+E:\advanced\People CRUD\People CRUD\bin\roslyn\System.IO.Compression.dll
+E:\advanced\People CRUD\People CRUD\bin\roslyn\System.IO.FileSystem.dll
+E:\advanced\People CRUD\People CRUD\bin\roslyn\System.IO.FileSystem.Primitives.dll
+E:\advanced\People CRUD\People CRUD\bin\roslyn\System.IO.Pipes.AccessControl.dll
+E:\advanced\People CRUD\People CRUD\bin\roslyn\System.IO.Pipes.dll
+E:\advanced\People CRUD\People CRUD\bin\roslyn\System.Reflection.Metadata.dll
+E:\advanced\People CRUD\People CRUD\bin\roslyn\System.Security.AccessControl.dll
+E:\advanced\People CRUD\People CRUD\bin\roslyn\System.Security.Claims.dll
+E:\advanced\People CRUD\People CRUD\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+E:\advanced\People CRUD\People CRUD\bin\roslyn\System.Security.Cryptography.Encoding.dll
+E:\advanced\People CRUD\People CRUD\bin\roslyn\System.Security.Cryptography.Primitives.dll
+E:\advanced\People CRUD\People CRUD\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+E:\advanced\People CRUD\People CRUD\bin\roslyn\System.Security.Principal.Windows.dll
+E:\advanced\People CRUD\People CRUD\bin\roslyn\System.Text.Encoding.CodePages.dll
+E:\advanced\People CRUD\People CRUD\bin\roslyn\System.ValueTuple.dll
+E:\advanced\People CRUD\People CRUD\bin\roslyn\System.Xml.ReaderWriter.dll
+E:\advanced\People CRUD\People CRUD\bin\roslyn\System.Xml.XmlDocument.dll
+E:\advanced\People CRUD\People CRUD\bin\roslyn\System.Xml.XPath.dll
+E:\advanced\People CRUD\People CRUD\bin\roslyn\System.Xml.XPath.XDocument.dll
+E:\advanced\People CRUD\People CRUD\bin\roslyn\vbc.exe
+E:\advanced\People CRUD\People CRUD\bin\roslyn\vbc.exe.config
+E:\advanced\People CRUD\People CRUD\bin\roslyn\vbc.rsp
+E:\advanced\People CRUD\People CRUD\bin\roslyn\VBCSCompiler.exe
+E:\advanced\People CRUD\People CRUD\bin\roslyn\VBCSCompiler.exe.config
+E:\advanced\People CRUD\People CRUD\bin\EntityFramework.dll
+E:\advanced\People CRUD\People CRUD\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\advanced\People CRUD\People CRUD\bin\Newtonsoft.Json.dll
+E:\advanced\People CRUD\People CRUD\bin\System.Net.Http.Formatting.dll
+E:\advanced\People CRUD\People CRUD\bin\System.Web.Http.dll
+E:\advanced\People CRUD\People CRUD\bin\System.Web.Http.WebHost.dll
+E:\advanced\People CRUD\People CRUD\bin\EntityFramework.xml
+E:\advanced\People CRUD\People CRUD\bin\Newtonsoft.Json.xml
+E:\advanced\People CRUD\People CRUD\bin\System.Net.Http.Formatting.xml
+E:\advanced\People CRUD\People CRUD\bin\System.Web.Http.xml
+E:\advanced\People CRUD\People CRUD\bin\System.Web.Http.WebHost.xml
+E:\advanced\People CRUD\People CRUD\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\advanced\People CRUD\People CRUD\obj\Debug\People CRUD.csprojAssemblyReference.cache
+E:\advanced\People CRUD\People CRUD\obj\Debug\People CRUD.csproj.CoreCompileInputs.cache
+E:\advanced\People CRUD\People CRUD\obj\Debug\People CRUD.csproj.CopyComplete
+E:\advanced\People CRUD\People CRUD\obj\Debug\People CRUD.dll
+E:\advanced\People CRUD\People CRUD\obj\Debug\People CRUD.pdb
